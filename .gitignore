@@ -1,0 +1,25 @@
+
+# =====================================
+# DataFlex 2025 - FutbolWebApp
+# =====================================
+
+# Archivos compilados
+*.exe
+*.obj
+*.err
+*.dep
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*.bak
+*~
+
+# Configuracion personal de DataFlex Studio
+IdeSrc/*.dsk
+IdeSrc/*.mtd
+IdeSrc/*.loc
+
+# Archivos del sistema Windows
+Thumbs.db
+Desktop.ini
