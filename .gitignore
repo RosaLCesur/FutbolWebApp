@@ -23,3 +23,11 @@ IdeSrc/*.loc
 # Archivos del sistema Windows
 Thumbs.db
 Desktop.ini
+
+# Clave privada de autenticacion de DataFlex
+AppSrc/LoginEncryptionKey.inc
+
+# Archivos generados durante la compilacion de DataFlex
+*.cch
+*.dbg
+*.prn
