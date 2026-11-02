@@ -9,7 +9,7 @@ Object oApplication is a cApplication
 End_Object
 
 Object oWebApp is a cWebApp
-    Set psTheme to "Df_Material"
+    Set psTheme to "Theme_futbol1"
     Set peAlignView to alignCenter
     
     // It is important to set this so that all views will default
@@ -52,42 +52,9 @@ Object oWebApp is a cWebApp
 
                 Object oViewMenu is a cWebMenuItem
                     Set psCaption to C_$View
-
-                    Object oSelectEntrenadorItem1 is a cWebMenuItem
-                        Set psCaption to "SelectEntrenador"
-
-                        WebRegisterPath ntNavigateBegin oSelectEntrenador
-
-                        Procedure OnClick
-                            Forward Send OnClick
-                                Send NavigatePath
-                        End_Procedure
-                    End_Object
-
-                    Object oSelectJugadorItem1 is a cWebMenuItem
-                        Set psCaption to "SelectJugador"
-
-                        WebRegisterPath ntNavigateBegin oSelectJugador
-
-                        Procedure OnClick
-                            Forward Send OnClick
-                                Send NavigatePath
-                        End_Procedure
-                    End_Object
-
-                    Object oSelectPosicionItem1 is a cWebMenuItem
-                        Set psCaption to "SelectPosicion"
-
-                        WebRegisterPath ntNavigateBegin oSelectPosicion
-
-                        Procedure OnClick
-                            Forward Send OnClick
-                                Send NavigatePath
-                        End_Procedure
-                    End_Object
-
+                    
                     Object oSelectEquipoItem1 is a cWebMenuItem
-                        Set psCaption to "SelectEquipo"
+                        Set psCaption to "Equipos"
 
                         WebRegisterPath ntNavigateBegin oSelectEquipo
 
@@ -98,9 +65,42 @@ Object oWebApp is a cWebApp
                     End_Object
 
                     Object oSelectLigaItem1 is a cWebMenuItem
-                        Set psCaption to "SelectLiga"
+                        Set psCaption to "Ligas"
 
                         WebRegisterPath ntNavigateBegin oSelectLiga
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
+                    
+                     Object oSelectJugadorItem1 is a cWebMenuItem
+                        Set psCaption to "Jugadores"
+
+                        WebRegisterPath ntNavigateBegin oSelectJugador
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oSelectEntrenadorItem1 is a cWebMenuItem
+                        Set psCaption to "Entrenadores"
+
+                        WebRegisterPath ntNavigateBegin oSelectEntrenador
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
+                    
+                    Object oSelectPosicionItem1 is a cWebMenuItem
+                        Set psCaption to "Posiciones"
+
+                        WebRegisterPath ntNavigateBegin oSelectPosicion
 
                         Procedure OnClick
                             Forward Send OnClick

@@ -29,7 +29,7 @@ Object oDashboard is a cWebView
 
     Set piMaxWidth to 1024
     
-    Set psCaption to "FutbolWebApp"
+    Set psCaption to "Inicio"
     Set peViewType to vtUndefined
     Set pbShowCaption to False
     Set psCSSClass to "Dashboard"
