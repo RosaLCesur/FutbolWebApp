@@ -28,12 +28,13 @@ Object oSelectPosicion is a cWebView
 
 
     Object oList is a cWebList
-        Set piColumnSpan to 0
+        Set piColumnSpan to 8
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbFillHeight to True
         Set pbShowHeader to False
         Set piSortColumn to 0
+        Set piColumnIndex to 2
+        Set pbFillHeight to True
 
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre

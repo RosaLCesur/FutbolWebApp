@@ -33,28 +33,29 @@ Object oSelectEquipo is a cWebView
 
 
     Object oList is a cWebList
-        Set piColumnSpan to 0
+        Set piColumnSpan to 8
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbFillHeight to True
         Set pbShowHeader to False
         Set piSortColumn to 0
+        Set piColumnIndex to 2
+        Set pbFillHeight to True
 
         Object oequipoNombre is a cWebColumn
             Entry_Item equipo.Nombre
             Set psCaption to "equipo.Nombre"
-            Set piWidth to 1201
+            Set piWidth to 630
         End_Object 
 
         Object oligaPais is a cWebColumn
             Entry_Item liga.Pais
             Set psCaption to "liga.Pais"
-            Set piWidth to 500
+            Set piWidth to 374
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
-            Set piWidth to 45
+            Set piWidth to 106
             Set pbFixedWidth to True
             Set pbResizable to False
             Set piListRowSpan to 1
