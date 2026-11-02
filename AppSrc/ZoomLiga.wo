@@ -161,6 +161,8 @@ Object oZoomLiga is a cWebView
         Case End
 
         Send SetActionButtons
+        
+        Send SetBreadcrumbCaption (Trim(liga.Nombre))
 
     End_Procedure
 

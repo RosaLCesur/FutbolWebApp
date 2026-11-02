@@ -171,6 +171,8 @@ Object oZoomJugador is a cWebView
         Case End
 
         Send SetActionButtons
+        
+        Send SetBreadcrumbCaption (Trim(jugador.Nombre) + ' ' + Trim(jugador.Apellido))
 
     End_Procedure
 

@@ -158,6 +158,8 @@ Object oZoomEquipo is a cWebView
         Case End
 
         Send SetActionButtons
+        
+        Send SetBreadcrumbCaption (Trim(equipo.Nombre))
 
     End_Procedure
 

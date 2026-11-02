@@ -137,6 +137,8 @@ Object oZoomPosicion is a cWebView
         Case End
 
         Send SetActionButtons
+        
+        Send SetBreadcrumbCaption (Trim(posicion.Nombre))
 
     End_Procedure
 
