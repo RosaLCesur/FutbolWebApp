@@ -49,6 +49,13 @@ Object oZoomEquipo is a cWebView
             Set piColumnIndex to 5
             Set peLabelPosition to lpTop
             Set psLabel to "Liga"
+            Set pbPromptButton to True
+                        
+            WebRegisterPath ntNavigateForward oSelectLiga
+
+            Procedure OnPrompt
+                Forward Send NavigatePath
+            End_Procedure
         End_Object 
 
         Object oligaPais is a cWebForm
