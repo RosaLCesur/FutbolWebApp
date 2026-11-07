@@ -31,19 +31,19 @@ Object oSelectPosicion is a cWebView
         Set piColumnSpan to 8
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbShowHeader to False
+        Set pbShowHeader to True
         Set piSortColumn to 0
         Set piColumnIndex to 2
         Set pbFillHeight to True
 
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre
-            Set psCaption to "posicion.Nombre"
+            Set psCaption to "Posición"
             Set piWidth to 500
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
-            Set psCaption to "btn"
+            Set psCaption to " "
             Set piWidth to 45
             Set pbFixedWidth to True
             Set pbResizable to False
@@ -98,7 +98,7 @@ Object oSelectPosicion is a cWebView
 
         Object oSearch is a cWebMenuItem
             Set psCSSClass to "WebPromptMenuItem"
-            Set psCaption to "Search"
+            Set psCaption to "Buscar"
 
             Procedure OnClick
                 Send Search of oList
@@ -108,7 +108,7 @@ Object oSelectPosicion is a cWebView
 
         Object oNewButton is a cWebMenuItem
             Set psCSSClass to "WebClearMenuItem"
-            Set psCaption to "New"
+            Set psCaption to "Nuevo"
 
             WebRegisterPath ntNavigateForward oZoomPosicion
 
