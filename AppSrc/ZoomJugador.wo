@@ -84,7 +84,7 @@ Object oZoomJugador is a cWebView
             Set piColumnIndex to 6
             Set piColumnSpan to 3
                 
-            WebRegisterPath ntNavigateForward oSelectPosicion
+            WebRegisterPath ntNavigateForwardCustom oSelectPosicion
       
             Procedure OnClick
                 Send NavigatePath
