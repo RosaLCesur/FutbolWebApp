@@ -41,37 +41,37 @@ Object oSelectEntrenador is a cWebView
         Set piColumnSpan to 13
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbShowHeader to False
+        Set pbShowHeader to True
         Set piSortColumn to 0
         Set piColumnIndex to 0
         Set pbFillHeight to True
 
         Object oentrenadorNombre is a cWebColumn
             Entry_Item entrenador.Nombre
-            Set psCaption to "entrenador.Nombre"
+            Set psCaption to "Nombre"
             Set piWidth to 266
         End_Object 
 
         Object oentrenadorApellido is a cWebColumn
             Entry_Item entrenador.Apellido
-            Set psCaption to "entrenador.Apellido"
-            Set piWidth to 263
+            Set psCaption to "Apellido"
+            Set piWidth to 266
         End_Object 
 
         Object oentrenadorNacionalidad is a cWebColumn
             Entry_Item entrenador.Nacionalidad
-            Set psCaption to "entrenador.Nacionalidad"
-            Set piWidth to 193
+            Set psCaption to "Nacionalidad"
+            Set piWidth to 200
         End_Object 
 
         Object oequipoNombre is a cWebColumn
             Entry_Item equipo.Nombre
-            Set psCaption to "equipo.Nombre"
-            Set piWidth to 284
+            Set psCaption to "Equipo actual"
+            Set piWidth to 266
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
-            Set psCaption to "btn"
+            Set psCaption to " "
             Set piWidth to 48
             Set pbFixedWidth to True
             Set pbResizable to False
@@ -126,7 +126,7 @@ Object oSelectEntrenador is a cWebView
 
         Object oSearch is a cWebMenuItem
             Set psCSSClass to "WebPromptMenuItem"
-            Set psCaption to "Search"
+            Set psCaption to "Buscar"
 
             Procedure OnClick
                 Send Search of oList
@@ -136,7 +136,7 @@ Object oSelectEntrenador is a cWebView
 
         Object oNewButton is a cWebMenuItem
             Set psCSSClass to "WebClearMenuItem"
-            Set psCaption to "New"
+            Set psCaption to "Nuevo"
 
             WebRegisterPath ntNavigateForward oZoomEntrenador
 
