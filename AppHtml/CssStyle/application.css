@@ -129,3 +129,11 @@
 .PanelGrupo.WebGroup.WebGrp_HasBorder > .WebCon_Inner > div > .WebContainer {
     box-shadow: none;
 }
+
+
+/*Listas dentro de los contenedores de los zoom*/
+
+.PanelGrupo .WebList_Focus {
+    border: none;
+    box-shadow: none;
+}

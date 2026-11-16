@@ -32,14 +32,14 @@ Object oZoomEquipo is a cWebView
 
 
     Object oWebMainPanel is a cWebPanel
-        Set piColumnCount to 10
+        Set piColumnCount to 40
         WebSetResponsive piColumnCount rmMobile to 4
         
         Object oEquipoDatos is a cWebGroup
             Set psCaption to "Datos del equipo"
             Set psCSSClass to "PanelGrupo"
             Set piColumnCount to 10
-            Set piColumnSpan to 5
+            Set piColumnSpan to 19
             Set piRowSpan to 2
             Set piRowIndex to 0
             Set piColumnIndex to 0
@@ -57,8 +57,8 @@ Object oZoomEquipo is a cWebView
         Object oEquipoLiga is a cWebGroup
             Set psCaption to "Datos de la competición"
             Set psCSSClass to "PanelGrupo"
-            Set piColumnSpan to 5
-            Set piColumnIndex to 5
+            Set piColumnSpan to 18
+            Set piColumnIndex to 20
             
             Object oligaNombre is a cWebForm
                 Entry_Item liga.Nombre
