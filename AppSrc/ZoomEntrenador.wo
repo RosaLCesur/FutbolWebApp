@@ -38,46 +38,71 @@ Object oZoomEntrenador is a cWebView
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 10
+        Set peLayoutType to ltInherit
+        Set piRowCount to 3
         WebSetResponsive piColumnCount rmMobile to 4
 
-        Object oentrenadorNombre is a cWebForm
-            Entry_Item entrenador.Nombre
-            Set piColumnSpan to 5
+        Object oEntrenadorDatos is a cWebGroup
+            Set psCaption to "Datos personales"
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnCount to 4
+            Set piColumnSpan to 10
+            Set piRowSpan to 2
+            Set piRowIndex to 0
             Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nombre"
-        End_Object 
-
-        Object oentrenadorApellido is a cWebForm
-            Entry_Item entrenador.Apellido
-            Set piColumnSpan to 5
-            Set piColumnIndex to 5
-            Set peLabelPosition to lpTop
-            Set psLabel to "Apellido"
-        End_Object 
-
-        Object oentrenadorNacionalidad is a cWebForm
-            Entry_Item entrenador.Nacionalidad
-            Set piColumnSpan to 5
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nacionalidad"
-        End_Object 
-
-        Object oequipoNombre is a cWebForm
-            Entry_Item equipo.Nombre
-            Set piColumnSpan to 5
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Equipo actual"
-            Set pbPromptButton to True
+            Set piRowCount to 2
             
-            WebRegisterPath ntNavigateForward oSelectEquipo
+            Object oentrenadorNombre is a cWebForm
+                Entry_Item entrenador.Nombre
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+                Set piRowIndex to 0
+                Set piColumnSpan to 2
+            End_Object 
 
-            Procedure OnPrompt
-                Forward Send NavigatePath
-            End_Procedure           
-        End_Object 
+            Object oentrenadorApellido is a cWebForm
+                Entry_Item entrenador.Apellido
+                Set piColumnIndex to 2
+                Set peLabelPosition to lpTop
+                Set psLabel to "Apellido"
+                Set piRowIndex to 0
+                Set piColumnSpan to 2
+            End_Object     
+
+            Object oentrenadorNacionalidad is a cWebForm
+                Entry_Item entrenador.Nacionalidad
+                Set piColumnSpan to 2
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nacionalidad"
+                Set piRowIndex to 1
+            End_Object     
+        End_Object
+
+        Object oEntrenadorEquipo is a cWebGroup
+            Set psCaption to "Información deportiva"
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnSpan to 5
+            
+            Object oequipoNombre is a cWebForm
+                Entry_Item equipo.Nombre
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Equipo actual"
+                Set pbPromptButton to True
+                Set piRowIndex to 0
+                Set piRowSpan to 3
+                
+                WebRegisterPath ntNavigateForward oSelectEquipo
+    
+                Procedure OnPrompt
+                    Forward Send NavigatePath
+                End_Procedure           
+            End_Object     
+        End_Object
+        
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
