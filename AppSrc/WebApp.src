@@ -41,7 +41,7 @@ Object oWebApp is a cWebApp
                 Set piMenuHeight to 500
 
                 Object oDashboard_itm is a cWebMenuItem
-                    Set psCaption to C_$Dashboard
+                    Set psCaption to "Inicio"
                     
                     WebRegisterPath ntNavigateBegin oDashboard
 
