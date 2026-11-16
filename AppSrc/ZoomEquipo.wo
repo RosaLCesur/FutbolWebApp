@@ -34,37 +34,56 @@ Object oZoomEquipo is a cWebView
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 10
         WebSetResponsive piColumnCount rmMobile to 4
-
-        Object oequipoNombre is a cWebForm
-            Entry_Item equipo.Nombre
+        
+        Object oEquipoDatos is a cWebGroup
+            Set psCaption to "Datos del equipo"
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnCount to 10
             Set piColumnSpan to 5
+            Set piRowSpan to 2
+            Set piRowIndex to 0
             Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Equipo"
-        End_Object 
+            Set piRowCount to 2
 
-        Object oligaNombre is a cWebForm
-            Entry_Item liga.Nombre
+            Object oequipoNombre is a cWebForm
+                Entry_Item equipo.Nombre
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+            End_Object
+        End_Object
+        
+        Object oEquipoLiga is a cWebGroup
+            Set psCaption to "Datos de la competición"
+            Set psCSSClass to "PanelGrupo"
             Set piColumnSpan to 5
             Set piColumnIndex to 5
-            Set peLabelPosition to lpTop
-            Set psLabel to "Liga"
-            Set pbPromptButton to True
-                        
-            WebRegisterPath ntNavigateForward oSelectLiga
+            
+            Object oligaNombre is a cWebForm
+                Entry_Item liga.Nombre
+                Set piColumnSpan to 5
+                Set piColumnIndex to 5
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+                Set pbPromptButton to True
+                            
+                WebRegisterPath ntNavigateForward oSelectLiga
+    
+                Procedure OnPrompt
+                    Forward Send NavigatePath
+                End_Procedure
+            End_Object 
 
-            Procedure OnPrompt
-                Forward Send NavigatePath
-            End_Procedure
-        End_Object 
+            Object oligaPais is a cWebForm
+                Entry_Item liga.Pais
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "País"
+            End_Object 
+        End_Object
 
-        Object oligaPais is a cWebForm
-            Entry_Item liga.Pais
-            Set piColumnSpan to 5
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "País"
-        End_Object 
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup

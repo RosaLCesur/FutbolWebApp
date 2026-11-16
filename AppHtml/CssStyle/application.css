@@ -1,1 +1,131 @@
 @import url("../CssThemes/Theme_futbol1/Fonts/material-icons.css");
+
+/*Tarjetas*/
+
+.Tile .WebCon_Sizer {
+    height: 126px;
+    background: var(--df-Grayscale8);
+    color: var(--df-Grayscale1);
+    /*Custom color*/
+    margin: 5px;
+    padding-left: 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--df-Grayscale4);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.Tile .WebCon_Sizer:hover{
+    background: rgb(161, 182, 172);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.349);
+    color: white;
+}
+
+.Tile .Tile_Title, .Tile .Tile_Subtitle {
+    text-align: left;
+}
+
+.Tile .WebCon_Sizer:hover .Tile_Subtitle {
+    color: white;
+}
+
+
+/*Cabecera*/
+
+.HeaderPanel.WebPanel .WebContainer .WebButton.WebMenuButton button:before {
+    padding: 15px 0;
+}
+
+.HeaderPanel .WebMenuButton button:hover::before,
+.HeaderPanel .WebMenuButton button:focus::before {
+    color: var(--df-Grayscale7) !important;
+}
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar span.WebItm_Icon:hover::before,
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar span.WebItm_Icon:focus::before {
+    color: var(--df-Grayscale7) !important;
+}
+
+
+/*Listas del Select*/
+
+.WebGrid .WebList_Body .WebList_Row,
+.WebList .WebList_Body .WebList_Row {
+    font-family: var(--df-DtaFont);
+    font-size: var(--df-DtaSize);
+    border: 1px solid var(--df-Grayscale7);
+    color: var(--df-Grayscale2);
+}
+
+.WebGrid .WebList_Body .WebList_Row:hover,
+.WebList .WebList_Body .WebList_Row:hover {
+    background-color: var(--df-MainLight3);
+    cursor: pointer;
+    /*font-family: var(--df-DtaFont);
+    font-size: var(--df-DtaSize);
+    border: 1px solid var(--df-Grayscale7);*/
+}
+
+.WebGrid > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected,
+.WebList > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected,
+.WebGrid > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected,
+.WebList > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected {
+    background-color: rgb(185, 207, 196);
+    border-left: 3px solid var(--df-MainLight);
+}
+
+.WebGrid .WebList_Head .WebList_ColCap,
+.WebList .WebList_Head .WebList_ColCap {
+    overflow: hidden;
+    white-space: break-spaces;
+    padding: 15px 10px;
+    font-weight: bold;
+    color: var(--df-Grayscale3);
+}
+
+.WebList_Focus {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1); ;
+    border: 1px solid var(--df-MainRegular);
+    border-radius: 8px;
+    background-color: var(--df-Grayscale8);
+    padding: 5px 0px 6px 0px;
+}
+
+
+/*Ventanas emergentes*/
+
+.WebWindow {
+    border-radius: 0px;
+}
+
+.WebWindow.WebMsgBox .WebWin_title {
+    font-weight: bold;
+    padding: 18px 15px 15px 30px;
+}
+
+
+/*Formularios numéricos a la izquierda*/
+
+.WebForm input,
+.WebForm .WebDynFrm, 
+.WebForm.Web_Disabled input,
+.WebForm.Web_Disabled .WebDynFrm,
+.WebForm.Web_Enabled input {
+    text-align: left;
+    padding-left: 5px;
+}
+
+
+/*Contenedores de los zooms*/
+
+.PanelGrupo {
+    border: 1px solid var(--df-MainRegular);
+    border-radius: 8px;
+    background-color:  var(--df-Grayscale8);
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.PanelGrupo.WebGroup.WebGrp_HasBorder > .WebCon_Inner > div > .WebContainer {
+    box-shadow: none;
+}

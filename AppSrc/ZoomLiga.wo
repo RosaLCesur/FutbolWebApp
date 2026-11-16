@@ -39,68 +39,89 @@ Object oZoomLiga is a cWebView
         Set peRegion to prTop
         Set piHeight to 430
         WebSetResponsive piColumnCount rmMobile to 4
-
-        Object oligaNombre is a cWebForm
-            Entry_Item liga.Nombre
-            Set piColumnSpan to 5
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nombre"
-        End_Object 
-
-        Object oligaPais is a cWebForm
-            Entry_Item liga.Pais
-            Set piColumnSpan to 5
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "País"
-        End_Object 
-
-        Object oligaEquipos is a cWebForm
-            Entry_Item liga.Equipos
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nº de equipos"
-        End_Object 
-
-        Object oligaEquiposMax is a cWebForm
-            Entry_Item liga.EquiposMax
-            Set piColumnSpan to 2
-            Set piColumnIndex to 3
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nº máximo de equipos"
-        End_Object 
         
-        Object oBotonEquipos is a cWebButton
+        Object oLigaDatos is a cWebGroup
+            Set psCaption to "Datos de la competición"
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnCount to 10
+            Set piColumnSpan to 5
+            Set piRowSpan to 2
+            Set piRowIndex to 0
+            Set piColumnIndex to 0
+            Set piRowCount to 2
+
+            Object oligaNombre is a cWebForm
+                Entry_Item liga.Nombre
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre"
+            End_Object 
+    
+            Object oligaPais is a cWebForm
+                Entry_Item liga.Pais
+                Set piColumnSpan to 10
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "País"
+            End_Object 
+            
+            Object oligaEquipos is a cWebForm
+                Entry_Item liga.Equipos
+                Set piColumnSpan to 4
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nº de equipos participantes"
+                Set peDataType to typeNumber
+            End_Object 
+    
+            Object oligaEquiposMax is a cWebForm
+                Entry_Item liga.EquiposMax
+                Set piColumnSpan to 4
+                Set piColumnIndex to 6
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nº máximo de equipos"
+                Set peDataType to typeNumber
+            End_Object 
+        End_Object
+        
+        Object oListaEquiposLiga is a cWebGroup
             Set psCaption to "Equipos participantes"
-            Set piColumnIndex to 1
-            Set piColumnSpan to 3
-                
-            WebRegisterPath ntNavigateForward oSelectEquipo
-      
-            Procedure OnClick
-                Send NavigatePath
-            End_Procedure
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnCount to 10
+            Set piColumnSpan to 5
+            Set piColumnIndex to 5
+            
+            Object oListaEquipos is a cWebList
+                Set piColumnIndex to 0
+                Set piColumnSpan to 10
+                Set peLabelPosition to lpTop
+                Set psLabel to "Equipos participantes"
+                Set pbShowHeader to False
+                Set Server to oequipo_DD
+                      
+                Object oequipoNombre is a cWebColumn
+                    Entry_Item equipo.Nombre
+                    Set psCaption to "equipo.Nombre"
+                    Set pbShowCaption to False
+                End_Object    
+            End_Object
+
+            Object oBotonEquipos is a cWebButton
+                Set psCaption to "Equipos participantes"
+                Set piColumnIndex to 3
+                Set piColumnSpan to 4
+                    
+                WebRegisterPath ntNavigateForward oSelectEquipo
+          
+                Procedure OnClick
+                    Send NavigatePath
+                End_Procedure
+            End_Object
         End_Object
         
               
-        Object oListaEquipos is a cWebList
-            Set piColumnIndex to 0
-            Set piColumnSpan to 5
-            Set pbShowLabel to True
-            Set peLabelPosition to lpTop
-            Set psLabel to "Equipos participantes"
-            Set pbShowHeader to False
-            Set Server to oequipo_DD
-                  
-            Object oequipoNombre is a cWebColumn
-                Entry_Item equipo.Nombre
-                Set psCaption to "equipo.Nombre"
-                Set pbShowCaption to False
-            End_Object
-                
-        End_Object
+        
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
