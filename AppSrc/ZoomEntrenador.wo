@@ -25,7 +25,7 @@ Object oZoomEntrenador is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
     End_Object 
 
     Object oentrenador_DD is a centrenadorDataDictionary
@@ -84,6 +84,7 @@ Object oZoomEntrenador is a cWebView
             Set psCaption to "Información deportiva"
             Set psCSSClass to "PanelGrupo"
             Set piColumnSpan to 5
+            Set piColumnCount to 3
             
             Object oequipoNombre is a cWebForm
                 Entry_Item equipo.Nombre
@@ -100,7 +101,8 @@ Object oZoomEntrenador is a cWebView
                 Procedure OnPrompt
                     Forward Send NavigatePath
                 End_Procedure           
-            End_Object     
+            End_Object
+            
         End_Object
         
     End_Object 
@@ -157,12 +159,17 @@ Object oZoomEntrenador is a cWebView
         Get Server to hoDD
         Get GetNavigateData to NavigateData
         Get HasRecord of hoDD to bHasRecord
+        
+        //Desde la vista se impide registrar estos campos durante la edición
+        WebSet pbReadOnly of oEntrenadorNombre to bHasRecord
+        WebSet pbReadOnly of oEntrenadorApellido to bHasRecord
 
         // let's hide all buttons and then Show the ones we want
         WebSet pbRender of oEditBtn to False
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
         WebSet pbRender of oDeleteBtn to False
+            
 
         If (NavigateData.bReadOnly) Begin
             WebSet pbRender of oEditBtn to True
