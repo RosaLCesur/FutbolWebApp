@@ -102,6 +102,9 @@ Object oZoomPosicion is a cWebView
         Get Server to hoDD
         Get GetNavigateData to NavigateData
         Get HasRecord of hoDD to bHasRecord
+        
+        //Desde la vista se impide registrar estos campos durante la edición
+        WebSet pbReadOnly of oPosicionNombre to bHasRecord
 
         // let's hide all buttons and then Show the ones we want
         WebSet pbRender of oEditBtn to False
