@@ -26,6 +26,9 @@ Object oZoomEntrenador is a cWebView
 
     Object oequipo_DD is a cequipoDataDictionary
         Set DDO_Server to oliga_DD
+        //Permite no heredar el Required que nombre tiene en tabla equipo
+        //El campo no será requerido desde entrenador y puede quedar en blanco
+        Set Field_Option Field equipo.Nombre DD_REQUIRED to False
     End_Object 
 
     Object oentrenador_DD is a centrenadorDataDictionary
@@ -100,9 +103,21 @@ Object oZoomEntrenador is a cWebView
     
                 Procedure OnPrompt
                     Forward Send NavigatePath
-                End_Procedure           
+                End_Procedure
             End_Object
             
+            Object oBotonDespedir is a cWebButton
+                Set psCaption to "Despedir"
+                Set pbVisible to False
+                Set piColumnIndex to 2
+                Set piRowIndex to 2
+                                        
+                Procedure OnClick
+                    //Apretar manda poner a 0 el equipo y envía el cambio a la BBDD
+                    Send Clear of oequipo_DD
+                    Send Request_Save of oentrenador_DD
+                End_Procedure
+            End_Object            
         End_Object
         
     End_Object 
@@ -169,7 +184,8 @@ Object oZoomEntrenador is a cWebView
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
         WebSet pbRender of oDeleteBtn to False
-            
+        //Botón despedir no es visible
+        WebSet pbVisible of oBotonDespedir to False
 
         If (NavigateData.bReadOnly) Begin
             WebSet pbRender of oEditBtn to True
@@ -178,6 +194,11 @@ Object oZoomEntrenador is a cWebView
             WebSet pbRender of oSaveBtn to True
             WebSet pbRender of oCancelChangesBtn to True
             WebSet pbRender of oDeleteBtn to bHasRecord
+            //Botón despedir se hace visible si se edita y hay un equipo asignado
+            If (entrenador.EquipoID > 0) Begin
+                WebSet pbVisible of oBotonDespedir to bHasRecord    
+            End
+
         End
     End_Procedure
 

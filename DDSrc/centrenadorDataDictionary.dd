@@ -24,6 +24,17 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Field_Option Field entrenador.Apellido DD_REQUIRED to True
         Set Field_Option Field entrenador.Apellido DD_COMMIT to True
         
+        Set ParentNullAllowed equipo.File_Number to True
+        
     End_Procedure
+    
+    //Permite que el valor 0 (al no tener equipo) cuente como Null en la BBDD
+    Procedure Attach_Main_File
+        Forward Send Attach_Main_File
+    
+        If (entrenador.EquipoID = 0) ;
+            Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number (RefTable(entrenador.EquipoID)) to True
+    End_Procedure
+
 
 End_Class
