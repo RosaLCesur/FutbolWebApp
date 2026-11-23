@@ -3,6 +3,10 @@
 Open entrenador
 Open equipo
 
+Object oNacionalidades is a CodeValidationTable
+    Set Type_Value to "NACION"
+End_Object
+
 Class centrenadorDataDictionary is a DataDictionary
     
     Procedure Construct_Object
@@ -26,6 +30,8 @@ Class centrenadorDataDictionary is a DataDictionary
         
         Set ParentNullAllowed equipo.File_Number to True
         
+        Set Field_Value_Table Field entrenador.Nacionalidad to oNacionalidades
+        
     End_Procedure
     
     //Permite que el valor 0 (al no tener equipo) cuente como Null en la BBDD
@@ -35,6 +41,5 @@ Class centrenadorDataDictionary is a DataDictionary
         If (entrenador.EquipoID = 0) ;
             Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number (RefTable(entrenador.EquipoID)) to True
     End_Procedure
-
 
 End_Class

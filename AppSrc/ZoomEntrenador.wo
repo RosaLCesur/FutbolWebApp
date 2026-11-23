@@ -73,7 +73,7 @@ Object oZoomEntrenador is a cWebView
                 Set piColumnSpan to 2
             End_Object     
 
-            Object oentrenadorNacionalidad is a cWebForm
+            Object oentrenadorNacionalidad is a cWebCombo
                 Entry_Item entrenador.Nacionalidad
                 Set piColumnSpan to 2
                 Set piColumnIndex to 0
