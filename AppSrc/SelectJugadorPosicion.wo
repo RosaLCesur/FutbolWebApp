@@ -1,0 +1,181 @@
+﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectJugadorPosicion.wo
+// SelectJugadorPosicion
+//
+
+Use cWebView.pkg
+Use cWebList.pkg
+Use cWebMenuGroup.pkg
+Use cWebMenuItem.pkg
+Use cWebColumnButton.pkg
+Use cWebColumn.pkg
+
+Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
+Use cjugadorDataDictionary.dd
+Use cposicionDataDictionary.dd
+Use cjugadorposicionDataDictionary.dd
+Use cWebButton.pkg
+
+Object oSelectJugadorPosicion is a cWebView
+    Set psCaption to "SelectJugadorPosicion"
+    Set peWebViewStyle to wvsDrilldown
+    Set peViewType to vtSelect
+    Set piColumnCount to 21
+    Set pbShowCaption to False
+    Set piMaxWidth to 1024
+
+    Object oLiga_DD is a cLigaDataDictionary
+    End_Object 
+
+    Object oEquipo_DD is a cEquipoDataDictionary
+        Set DDO_Server to oLiga_DD
+    End_Object 
+
+    Object oJugador_DD is a cJugadorDataDictionary
+        Set DDO_Server to oEquipo_DD
+    End_Object 
+
+    Object oPosicion_DD is a cPosicionDataDictionary
+    End_Object 
+    
+    Object oPosicionesTotales_DD is a cposicionDataDictionary
+    End_Object
+
+    Object oJugadorPosicion_DD is a cJugadorPosicionDataDictionary
+        Set DDO_Server to oJugador_DD
+        Set DDO_Server to oPosicion_DD
+    End_Object 
+
+    Set Main_DD to oJugadorPosicion_DD
+    Set Server  to oJugadorPosicion_DD
+
+     Object oPosicionesPosibles is a cWebGroup
+        Set psCaption to "Posiciones posibles"
+        Set psCSSClass to "PanelGrupo"
+         Set piColumnSpan to 9
+         Set piColumnCount to 9
+         Set piMinHeight to 320
+        
+        Object oListaPosiciones is a cWebList
+            Set piColumnSpan to 9
+            Set psCSSClass to "MobileList"
+            Set pbServerOnRowClick to True
+            Set pbShowHeader to False
+            Set Server to oPosicionesTotales_DD
+            Set piHeight to 0
+            Set pbScroll to False
+    
+            Object oPosicionNombre is a cWebColumn
+                Entry_Item posicion.Nombre
+                Set psCaption to "posicion.Nombre"
+                Set piWidth to 1201
+            End_Object
+            
+        End_Object  
+     End_Object
+
+     Object oBotonAnadir is a cWebButton
+         Set psCaption to ">>"
+         Set piColumnIndex to 9
+     
+         Procedure OnClick
+            Integer iPosicionID
+            Integer iJugadorID
+            Boolean bEncontrado
+            
+            //Guarda las ID de la posición que queremos añadir y del jugador 
+            Get Field_Current_Value of oPosicionesTotales_DD Field posicion.ID to iPosicionID
+            Get Field_Current_Value of oJugador_DD Field jugador.ID to iJugadorID
+            
+            //Se limpia la información del DD para un nuevo registro
+            Send Request_Clear of oJugadorPosicion_DD
+            
+            //Se preparan los valores en el buffer
+            Move iPosicionID to jugadorposicion.PosicionID
+            Move iJugadorID to jugadorposicion.JugadorID
+                
+            //Búsqueda por coincidencia de posicionID y jugadorID (index 2) y se guarda el resultado    
+            Send Request_Find of oJugadorPosicion_DD EQ jugadorposicion.File_Number 2
+            Move (Found) to bEncontrado
+            
+            If (bEncontrado) Begin
+                Send UserError "Esta posición ya está seleccionada" "Error" 
+            End
+            Else Begin
+                Send Request_Clear of oPosicion_DD
+                //Se busca la posición para guardarla en el DD posicion
+                Move iPosicionID to posicion.ID
+                Send Request_Find of oPosicion_DD EQ posicion.File_Number 1
+                If (Found) Begin
+                    Send Request_Save of oJugadorPosicion_DD
+                    Send RefreshListFromDD of oListaPosicionesJugador    
+                End
+            End          
+            
+         End_Procedure
+     End_Object
+
+     Object oBotonQuitar is a cWebButton
+         Set psCaption to "<<"
+         Set piColumnIndex to 10
+     
+         Procedure OnClick
+            Send Request_Delete of oJugadorPosicion_DD
+            Send RefreshListFromDD of oListaPosicionesJugador
+         End_Procedure
+     End_Object
+     
+     Object oPosicionesJugador is a cWebGroup
+        Set psCaption to "Posiciones del jugador"
+        Set psCSSClass to "PanelGrupo"
+         Set piColumnSpan to 9
+         Set piColumnIndex to 11
+         Set piColumnCount to 9
+         Set piMinHeight to 320
+        
+        Object oListaPosicionesJugador is a cWebList
+            Set piColumnSpan to 9
+            Set psCSSClass to "MobileList"
+            Set pbServerOnRowClick to True
+            Set pbShowHeader to False
+            Set Server to ojugadorposicion_DD
+            Set piHeight to 0
+            Set pbScroll to False
+    
+            Object oPosicionNombre is a cWebColumn
+                Entry_Item posicion.Nombre
+                Set psCaption to "posicion.Nombre"
+                Set piWidth to 1201
+            End_Object
+        End_Object  
+     End_Object        
+
+    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Case Begin
+            Case (NavigateData.eNavigateType = nfFromParent)
+                // If from parent, this is a constrained drill down
+                //Se necesita refrescar la lista posiciones ya que no usa el registro procedente del padre
+                Send RefreshListFromDD of oListaPosiciones
+                Case Break
+
+            Case (NavigateData.eNavigateType = nfFromChild)
+                // If from child, this is a probably a parent lookup from a Zoom
+                Case Break
+
+            Case (NavigateData.eNavigateType = nfFromMain)
+                // If from main, this is a probably a main-file lookup from a Zoom
+                WebSet pbRender of oDetailButton to False
+                Case Break
+
+            Case Else // must be nfUndefined
+                // This may be the start of a drilldown query or this may be used for some kind of custom query.
+
+        Case End
+        
+        Send SetHeaderCaption ("Editar posiciones de: "*(Trim(jugador.Nombre))*(Trim(jugador.Apellido)))
+        Send SetBreadcrumbCaption "Editar posiciones"
+
+    End_Procedure
+
+
+End_Object 
