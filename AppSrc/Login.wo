@@ -23,7 +23,6 @@ Object oLogin is a cWebView
     Delegate Set phoLoginView to Self
     
     Object oTopSpacer is a cWebSpacer
-        Set pbFillHeight to True
         Set piColumnSpan to 12
     End_Object
     
@@ -36,60 +35,65 @@ Object oLogin is a cWebView
     End_Object
     
     Object oLogo is a cWebImage
-        Set piColumnSpan to 10
-        Set psUrl to "images/DF_Logo_Retina.png"
+        Set piColumnSpan to 12
+        Set psUrl to "images/Logo FutbolWebApp.png"
         Set pePosition to wiFit
-        Set piColumnIndex to 1
+        Set piColumnIndex to 0
         Set piHeight to 160
         
         WebSetResponsive piHeight rmMobile to 100  // Best for small smart phones
     End_Object
     
-    Object oLoginName is a cWebForm
-        Set psLabel to "User ID:"
-        Set peLabelPosition to lpTop
-        Set piMaxLength to 20
-        Set piColumnIndex to 1
-        Set pbShowLabel to False
-        Set psPlaceHolder to "loginname"
-        Set piColumnSpan to 10
-        Set psAutoComplete to "username"
-    End_Object
-    
-    Object oPassword is a cWebForm
-        Set psLabel to "Password:"
-        Set pbPassword to True
-        Set peLabelAlign to alignLeft
-        Set piMaxLength to 20
-        Set peLabelPosition to lpTop
-        Set pbShowLabel to False
-        Set psPlaceHolder to "password"
+    Object oLoginPanel is a cWebGroup
+        Set psCaption to "Introduzca sus datos"
+        Set psCSSClass to "PanelGrupo"
         Set piColumnSpan to 10
         Set piColumnIndex to 1
-        Set psAutoComplete to "current-password"
-    End_Object
+        Set piColumnCount to 4
     
-    Object oWebSpacer1 is a cWebSpacer
-        Set piColumnSpan to 12
-        Set piHeight to 10
-    End_Object
-    
-    Object oLoginButton is a cWebButton
-        Set pbShowLabel to False
-        Set psCaption to "sign in"
-        Set pbServerOnClick to True
-        Set piColumnSpan to 10
-        Set piColumnIndex to 1
+        Object oLoginName is a cWebForm
+            Set psLabel to "User ID:"
+            Set peLabelPosition to lpTop
+            Set piMaxLength to 20
+            Set piColumnIndex to 1
+            Set pbShowLabel to False
+            Set psPlaceHolder to "Nombre de usuario"
+            Set piColumnSpan to 10
+            Set psAutoComplete to "username"
+        End_Object
         
-        Procedure OnClick
-            Send DoLogin
-        End_Procedure
-    End_Object
+        Object oPassword is a cWebForm
+            Set psLabel to "Password:"
+            Set pbPassword to True
+            Set peLabelAlign to alignLeft
+            Set piMaxLength to 20
+            Set peLabelPosition to lpTop
+            Set pbShowLabel to False
+            Set psPlaceHolder to "Contraseña"
+            Set piColumnSpan to 10
+            Set piColumnIndex to 1
+            Set psAutoComplete to "current-password"
+        End_Object
+        
+        Object oWebSpacer1 is a cWebSpacer
+            Set piColumnSpan to 12
+            Set piHeight to 10
+        End_Object
+        
+        Object oLoginButton is a cWebButton
+            Set pbShowLabel to False
+            Set psCaption to "Iniciar sesión"
+            Set pbServerOnClick to True
+            Set piColumnIndex to 0
+            Set piColumnSpan to 4
+            
+            Procedure OnClick
+                Send DoLogin
+            End_Procedure
+        End_Object
+    End_Object        
     
-    Object oBottomSpacer is a cWebSpacer
-        Set pbFillHeight to True
-        Set piColumnSpan to 12
-    End_Object
+    
     
     Procedure DoLogin
         String sLoginName sPassword sPrevStateHash
