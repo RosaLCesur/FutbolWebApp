@@ -141,6 +141,9 @@ Object oZoomJugador is a cWebView
                 Set psLabel to "Posiciones"
                 Set pbShowHeader to False
                 Set Server to oJugadorposicion_DD
+                Set piHeight to 20
+                Set pbScroll to False
+                Set psCSSClass to "MobileList"
                       
                 Object oJugadorPosicionNombre is a cWebColumn
                     Entry_Item posicion.Nombre

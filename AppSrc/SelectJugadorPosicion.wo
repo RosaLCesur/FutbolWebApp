@@ -37,6 +37,9 @@ Object oSelectJugadorPosicion is a cWebView
 
     Object oPosicion_DD is a cPosicionDataDictionary
     End_Object 
+    
+    Object oPosicionesTotales_DD is a cposicionDataDictionary
+    End_Object
 
     Object oJugadorPosicion_DD is a cJugadorPosicionDataDictionary
         Set DDO_Server to oJugador_DD
@@ -51,13 +54,16 @@ Object oSelectJugadorPosicion is a cWebView
         Set psCSSClass to "PanelGrupo"
          Set piColumnSpan to 9
          Set piColumnCount to 9
+         Set piMinHeight to 320
         
         Object oListaPosiciones is a cWebList
             Set piColumnSpan to 9
             Set psCSSClass to "MobileList"
             Set pbServerOnRowClick to True
             Set pbShowHeader to False
-            Set Server to oPosicion_DD
+            Set Server to oPosicionesTotales_DD
+            Set piHeight to 0
+            Set pbScroll to False
     
             Object oPosicionNombre is a cWebColumn
                 Entry_Item posicion.Nombre
@@ -78,11 +84,11 @@ Object oSelectJugadorPosicion is a cWebView
             Boolean bEncontrado
             
             //Guarda las ID de la posición que queremos añadir y del jugador 
-            Get Field_Current_Value of oPosicion_DD Field posicion.ID to iPosicionID
+            Get Field_Current_Value of oPosicionesTotales_DD Field posicion.ID to iPosicionID
             Get Field_Current_Value of oJugador_DD Field jugador.ID to iJugadorID
             
             //Se limpia la información del DD para un nuevo registro
-            Send Clear of oJugadorPosicion_DD
+            Send Request_Clear of oJugadorPosicion_DD
             
             //Se preparan los valores en el buffer
             Move iPosicionID to jugadorposicion.PosicionID
@@ -96,6 +102,7 @@ Object oSelectJugadorPosicion is a cWebView
                 Send UserError "Esta posición ya está seleccionada" "Error" 
             End
             Else Begin
+                Send Request_Clear of oPosicion_DD
                 //Se busca la posición para guardarla en el DD posicion
                 Move iPosicionID to posicion.ID
                 Send Request_Find of oPosicion_DD EQ posicion.File_Number 1
@@ -124,6 +131,7 @@ Object oSelectJugadorPosicion is a cWebView
          Set piColumnSpan to 9
          Set piColumnIndex to 11
          Set piColumnCount to 9
+         Set piMinHeight to 320
         
         Object oListaPosicionesJugador is a cWebList
             Set piColumnSpan to 9
@@ -131,6 +139,8 @@ Object oSelectJugadorPosicion is a cWebView
             Set pbServerOnRowClick to True
             Set pbShowHeader to False
             Set Server to ojugadorposicion_DD
+            Set piHeight to 0
+            Set pbScroll to False
     
             Object oPosicionNombre is a cWebColumn
                 Entry_Item posicion.Nombre
@@ -144,6 +154,8 @@ Object oSelectJugadorPosicion is a cWebView
         Case Begin
             Case (NavigateData.eNavigateType = nfFromParent)
                 // If from parent, this is a constrained drill down
+                //Se necesita refrescar la lista posiciones ya que no usa el registro procedente del padre
+                Send RefreshListFromDD of oListaPosiciones
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
