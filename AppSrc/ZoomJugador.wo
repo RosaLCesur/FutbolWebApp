@@ -43,6 +43,7 @@ Object oZoomJugador is a cWebView
     Object oJugadorposicion_DD is a cjugadorposicionDataDictionary
         Set DDO_Server to ojugador_DD
         Set DDO_Server to oPosicion_DD
+        Set Constrain_File to jugador.File_Number
     End_Object
 
 
@@ -51,14 +52,14 @@ Object oZoomJugador is a cWebView
 
 
     Object oWebMainPanel is a cWebPanel
-        Set piColumnCount to 10
+        Set piColumnCount to 39
         WebSetResponsive piColumnCount rmMobile to 4
         
         Object oJugadorDatos is a cWebGroup
             Set psCaption to "Datos personales"
             Set psCSSClass to "PanelGrupo"
             Set piColumnCount to 10
-            Set piColumnSpan to 10
+            Set piColumnSpan to 38
             Set piRowSpan to 2
             Set piRowIndex to 0
             Set piColumnIndex to 0
@@ -92,7 +93,7 @@ Object oZoomJugador is a cWebView
         Object oJugadorEquipo is a cWebGroup
             Set psCaption to "Información deportiva"
             Set psCSSClass to "PanelGrupo"
-            Set piColumnSpan to 5
+            Set piColumnSpan to 20
             Set piColumnCount to 4
 
             Object oequipoNombre is a cWebForm
@@ -119,6 +120,42 @@ Object oZoomJugador is a cWebView
                 Set piColumnSpan to 2
                     
                 WebRegisterPath ntNavigateForwardCustom oSelectPosicion
+          
+                Procedure OnClick
+                    Send NavigatePath
+                End_Procedure
+            End_Object
+        End_Object
+        
+        Object oListaJugadorPosicion is a cWebGroup
+            Set psCaption to "Posición del jugador"
+            Set psCSSClass to "PanelGrupo"
+            Set piColumnCount to 11
+            Set piColumnSpan to 17
+            Set piColumnIndex to 21
+            
+            Object oListaPosiciones is a cWebList
+                Set piColumnIndex to 0
+                Set piColumnSpan to 11
+                Set peLabelPosition to lpTop
+                Set psLabel to "Posiciones"
+                Set pbShowHeader to False
+                Set Server to oJugadorposicion_DD
+                      
+                Object oJugadorPosicionNombre is a cWebColumn
+                    Entry_Item posicion.Nombre
+                    Set psCaption to "posicion.Nombre"
+                    Set pbShowCaption to False
+                End_Object    
+            End_Object
+
+            Object oBotonEditarPosicion is a cWebButton
+                Set psCaption to "Editar sus posiciones"
+                Set pbVisible to False
+                Set piColumnIndex to 6
+                Set piColumnSpan to 5
+                    
+                WebRegisterPath ntNavigateForward oSelectJugadorPosicion
           
                 Procedure OnClick
                     Send NavigatePath
@@ -191,6 +228,8 @@ Object oZoomJugador is a cWebView
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
         WebSet pbRender of oDeleteBtn to False
+        //Botón Editar posiciones no es visible
+        WebSet pbVisible of oBotonEditarPosicion to False
 
         If (NavigateData.bReadOnly) Begin
             WebSet pbRender of oEditBtn to True
@@ -199,6 +238,8 @@ Object oZoomJugador is a cWebView
             WebSet pbRender of oSaveBtn to True
             WebSet pbRender of oCancelChangesBtn to True
             WebSet pbRender of oDeleteBtn to bHasRecord
+            //Botón Editar posiciones se hace visible en modo edición
+            WebSet pbVisible of oBotonEditarPosicion to True   
         End
     End_Procedure
 
